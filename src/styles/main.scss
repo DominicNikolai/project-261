@@ -1,53 +1,55 @@
 @import url(https://fonts.googleapis.com/css?family=Crete+Round);
 
-HTML, BODY {
+HTML,
+BODY {
   height: 100%;
-  }
+  overflow: hidden;
+}
 
-$colors: #2E0927, #D90000, #FF2D00, #FF8C00, #04756F;
+$colors: #2e0927, #d90000, #ff2d00, #ff8c00, #04756f;
 
 BODY {
   background: hsl(60, 100, 90);
-  font: 20em/1 'Crete Round', serif;
-  }
+  font: 15em 'Crete Round', serif;
+}
 
 .text--line2 {
-  font-size: .83em;
-  }
+  font-size: 0.83em;
+}
 
 svg {
   position: absolute;
   width: 100%;
   height: 100%;
-  }
+}
 
 $max: 5;
-$stroke-step: 6%; 
+$stroke-step: 6%;
 $stroke-space: 1%;
 $stroke-time: 5s;
 $stroke-time-step: $stroke-time / $max;
 .text-copy {
   fill: none;
   stroke: white;
-  stroke-dasharray: $stroke-step ($stroke-step * ($max - 1) + $stroke-space * $max );
+  stroke-dasharray: $stroke-step
+    ($stroke-step * ($max - 1) + $stroke-space * $max);
   stroke-width: 5;
   stroke-dashoffset: 0%;
-  
+
   animation: stroke-offset $stroke-time infinite linear;
-  
+
   @for $item from 1 through $max {
     $stroke-color: nth($colors, $item);
-    
+
     &:nth-child(#{$item}) {
       stroke: $stroke-color;
-      animation-delay: -$stroke-time-step*$item;
-      }
+      animation-delay: -$stroke-time-step * $item;
     }
-  }
-
-@keyframes stroke-offset {
-  100% {
-    stroke-dashoffset: -($stroke-step + $stroke-space) * ($max);  
   }
 }
 
+@keyframes stroke-offset {
+  100% {
+    stroke-dashoffset: -($stroke-step + $stroke-space) * ($max);
+  }
+}
